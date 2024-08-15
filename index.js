@@ -1,49 +1,53 @@
-// Завдання: 1
+// Task: 1
 /**
- * Функція `createDictionary` створює словник на основі масиву пар ключ-значення.
- * entries - Масив, що містить пари ключ-значення.
- * Повертаємо - Створений словник (Map).
+ * The function `createDictionary` creates a dictionary based on an array of key-value pairs.
+ * entries - An array containing key-value pairs.
+ * Returns - The created dictionary (Map).
  */
 function createDictionary(entries) {
-  // Створення порожнього словника
-  // Використання методу forEach для перебору масиву пар ключ-значення
-  // Додавання пари ключ-значення до словника за допомогою методу set
+  let map = new Map();
+  entries.forEach(([value, key]) => {
+    map.set(key, value);
+  });
+  return map;
 }
 
-// Приклад використання функції createDictionary
-console.log("Завдання: 1 ==============================");
+// Example usage of the createDictionary function
+console.log("Task: 1 ==============================");
 
 console.log(
   createDictionary([
-    ["apple", "яблуко"],
-    ["banana", "банан"],
-    ["orange", "апельсин"],
+    ["apple", "jabłko"],
+    ["banana", "banan"],
+    ["orange", "pomarańcza"],
   ])
 );
-// Виведе:
+// Output:
 // Map(3) {
-//   'apple' => 'яблуко',
-//   'banana' => 'банан',
-//   'orange' => 'апельсин'
+//   'apple' => 'jabłko',
+//   'banana' => 'banan',
+//   'orange' => 'pomarańcza'
 // }
 
-// Завдання: 2
+// Task: 2
 /**
- * Функція `convertMapToObject` отримує словник (Map) та перетворює його в об'єкт.
- * Ключами об'єкту стають ключі словника, а значеннями об'єкту - значення відповідних ключів у словнику.
+ * The function `convertMapToObject` takes a dictionary (Map) and converts it to an object.
+ * The object's keys become the keys of the dictionary, and the object's values are the corresponding values from the dictionary.
  *
- * map - Словник, який потрібно перетворити.
+ * map - The dictionary to be converted.
  *
- * Повертає - Об'єкт, що містить ключі та значення з вхідного словника.
+ * Returns - An object containing the keys and values from the input dictionary.
  */
 function convertMapToObject(map) {
-  // Перебираємо ключі та значення в словнику
-  // Додаємо ключ та значення до об'єкту
-  // Повертаємо отриманий об'єкт
+  let newObject = {};
+  for (let [key, value] of map) {
+    newObject[key] = value;
+  }
+  return newObject;
 }
 
-// Приклад використання функції convertMapToObject
-console.log("Завдання: 2 ==============================");
+// Example usage of the convertMapToObject function
+console.log("Task: 2 ==============================");
 
 let someMap = new Map([
   ["name", "John"],
@@ -52,120 +56,133 @@ let someMap = new Map([
 ]);
 
 console.log(convertMapToObject(someMap));
-// Виведе: { name: 'John', age: 30, city: 'New York' }
+// Output: { name: 'John', age: 30, city: 'New York' }
 
-// Завдання: 3
+// Task: 3
 /**
- * Функція `setValue` встановлює значення для заданого ключа в словнику.
- * dictionary - Словник, в якому потрібно змінити значення.
- * key - Ключ, для якого потрібно встановити значення.
- * value - Нове значення, яке потрібно присвоїти ключу.
+ * The function `setValue` sets the value for a given key in the dictionary.
+ * dictionary - The dictionary in which the value needs to be changed.
+ * key - The key for which the value needs to be set.
+ * value - The new value to assign to the key.
  */
 function setValue(dictionary, key, value) {
-  // Перевірка, чи існує вже ключ у словнику
-  // Якщо ключ вже існує, встановлюємо для нього нове значення в верхньому регістрі
-  // Якщо ключ не існує, додаємо нову пару ключ-значення до словника де значення буде таким же як ключ
+  if (dictionary.has(key)) {
+    dictionary.set(key, value);
+  } else {
+    dictionary.set(key, key);
+  }
+  return dictionary;
 }
 
-// Приклад використання функції setValue
-console.log("Завдання: 3 ==============================");
+// Example usage of the setValue function
+console.log("Task: 3 ==============================");
 
-// Встановлення нового значення для ключа "banana"
+// Setting a new value for the key "banana"
 console.log(
   setValue(
     new Map([
-      ["apple", "яблуко"],
-      ["banana", "банан"],
-      ["orange", "апельсин"],
+      ["apple", "jabłko"],
+      ["banana", "banan"],
+      ["orange", "pomarańcza"],
     ]),
     "banana",
-    "новий банан"
+    "nowy banan"
   )
 );
-// Виведе:
+// Output:
 // Map(3) {
-//   'apple' => 'яблуко',
-//   'banana' => 'новий банан',
-//   'orange' => 'апельсин'
+//   'apple' => 'jabłko',
+//   'banana' => 'nowy banan',
+//   'orange' => 'pomarańcza'
 // }
 
-// Завдання: 4
+// Task: 4
 /**
- * Функція `deleteKey` видаляє ключ та відповідне йому значення зі словника.
- * dictionary - Словник, з якого потрібно видалити ключ.
- * key - Ключ, який потрібно видалити.
- * Повертаємо - true, якщо ключ був успішно видалений, або false, якщо ключ не знайдено.
+ * The function `deleteKey` removes a key and its corresponding value from the dictionary.
+ * dictionary - The dictionary from which the key needs to be removed.
+ * key - The key that needs to be removed.
+ * Returns - true if the key was successfully removed, or false if the key was not found.
  */
 function deleteKey(dictionary, key) {
-  // Перевірка, чи існує ключ у словнику
-  // Якщо ключ існує, видаляємо його та відповідне значення
-  // Якщо ключ не знайдено, повертаємо false
+  if (dictionary.has(key)) {
+    dictionary.delete(key);
+    return true;
+  } else {
+    return false;
+  }
 }
 
-// Приклад використання функції deleteKey
-console.log("Завдання: 4 ==============================");
+// Example usage of the deleteKey function
+console.log("Task: 4 ==============================");
 
 console.log(
   deleteKey(
     new Map([
-      ["apple", "яблуко"],
-      ["banana", "банан"],
-      ["orange", "апельсин"],
+      ["apple", "jabłko"],
+      ["banana", "banan"],
+      ["orange", "pomarańcza"],
     ]),
     "banana"
   )
 ); // true
 
-// Завдання: 5
+// Task: 5
 /**
- * Функція `getKeysStartingWith` повертає масив ключів словника, які починаються з заданої букви.
- * dictionary - Словник, ключі якого перевіряються.
- * letter - Буква, з якої мають починатися ключі.
- * Повертаємо - Масив ключів, які починаються з заданої букви.
+ * The function `getKeysStartingWith` returns an array of keys from the dictionary that start with a given letter.
+ * dictionary - The dictionary whose keys are checked.
+ * letter - The letter that the keys must start with.
+ * Returns - An array of keys that start with the specified letter.
  */
 function getKeysStartingWith(dictionary, letter) {
-  // Оголошення порожнього масиву для збереження ключів
-  // Перебір ключів словника за допомогою циклу for...of
-  // Перевірка, чи ключ починається з заданої букви
-  // Якщо ключ починається з заданої букви, додаємо його до масиву
-  // Повертаємо масив
+  let keysStartingWithLetter = [];
+  for (let key of dictionary.keys()) {
+    if (key.startsWith(letter)) {
+      keysStartingWithLetter.push(key);
+    }
+  }
+  return keysStartingWithLetter;
 }
 
-// Приклад використання функції getKeysStartingWith
-console.log("Завдання: 5 ==============================");
+// Example usage of the getKeysStartingWith function
+console.log("Task: 5 ==============================");
 
-// Отримання ключів, які починаються з букви "g"
+// Getting keys that start with the letter "g"
 console.log(
   getKeysStartingWith(
     new Map([
-      ["apple", "яблуко"],
-      ["banana", "банан"],
-      ["orange", "апельсин"],
-      ["grape", "виноград"],
-      ["pear", "груша"],
+      ["apple", "jabłko"],
+      ["banana", "banan"],
+      ["orange", "pomarańcza"],
+      ["grape", "winogrono"],
+      ["pear", "gruszka"],
     ]),
     "g"
   )
-); // Виведе: [ 'grape' ]
+); // Output: [ 'grape' ]
 
-// Завдання: 6
+// Task: 6
 /**
- * Функція `addKeyValuePairs` додає пари ключ-значення до словника з перевіркою на унікальність ключа.
- * Вона також веде статистику доданих та відхилених ключів.
- * dictionary - Словник, в який потрібно додати пари.
- * entries - Масив пар ключ-значення, які потрібно додати.
- * Повертаємо - Об'єкт, що містить змінений словник, кількість доданих та відхилених ключів.
+ * The function `addKeyValuePairs` adds key-value pairs to the dictionary with a check for the uniqueness of the key.
+ * It also tracks the number of added and rejected keys.
+ * dictionary - The dictionary to which the pairs need to be added.
+ * entries - An array of key-value pairs that need to be added.
+ * Returns - An object containing the updated dictionary, the number of added, and rejected keys.
  */
 function addKeyValuePairs(dictionary, entries) {
-  // Ведемо статистику доданих та відхилених ключів, для цього створемо змінні added та rejected з початковими значеннями 0
-  // Використовуємо метод forEach для перебору масиву пар ключ-значення
-  // Перевіряємо, чи словник вже містить такий ключ за допомогою методу has
-  // Якщо ключ є унікальним, додаємо його до словника за допомогою методу set та збільшимо added на 1
-  // Якщо ключ не є унікальним, збільшимо rejected на 1
-  // Повертаємо об'єкт з dictionary, added, rejected
+  let added = 0;
+  let rejected = 0;
+  entries.forEach(([key, value]) => {
+    if (!dictionary.has(key)) {
+      dictionary.set(key, value);
+      added++;
+    } else {
+      rejected++;
+    }
+  });
+  return { dictionary, added, rejected };
 }
 
-console.log("Завдання: 6 ==============================");
+console.log("Task: 6 ==============================");
 
 console.log(
   addKeyValuePairs(
@@ -179,7 +196,7 @@ console.log(
     ]
   )
 );
-// Виведе: {
+// Output: {
 //   dictionary: Map(3)
 //   { 'user1' => { name: 'John', age: 24 },
 //   'user2' => { name: 'Emma', age: 28 },
@@ -188,87 +205,100 @@ console.log(
 //   rejected: 1
 // }
 
-// Завдання: 7
+// Task: 7
 /**
- * Функція `transformDictionary` перетворює словник в об'єкт, який містить масиви ключів, значень і пар ключ-значення.
- * dictionary - Словник, який потрібно перетворити.
- * Повертаємо - Об'єкт, який містить масиви ключів, значень і пар ключ-значення.
+ * The function `transformDictionary` converts a dictionary into an object that contains arrays of keys, values, and key-value pairs.
+ * dictionary - The dictionary that needs to be converted.
+ * Returns - An object containing arrays of keys, values, and key-value pairs.
  */
 function transformDictionary(dictionary) {
-  // Створюємо порожні масиви для ключів (змінна keys), значень (змінна values) і пар ключ-значення (змінна entries)
-  // Використовуємо цикл for...of і метод keys для перебору ключів словника
-  // Додаємо кожен ключ до масиву keys за допомогою методу push
-  // Використовуємо цикл for...of і метод values для перебору значень словника
-  // Додаємо кожне значення до масиву values за допомогою методу push
-  // Використовуємо цикл for...of і метод entries для перебору пар ключ-значення словника
-  // Додаємо кожну пару ключ-значення до масиву entries за допомогою методу push
-  // Повертаємо об'єкт, який містить масиви ключів (властивість keys), значень (властивість values) і пар ключ-значення (властивість entries)
+  let keys = [],
+    values = [],
+    entries = [];
+  for (let key of dictionary.keys()) {
+    keys.push(key);
+  }
+  for (let value of dictionary.values()) {
+    values.push(value);
+  }
+  for (let entry of dictionary.entries()) {
+    entries.push(entry);
+  }
+  return {
+    keys,
+    values,
+    entries,
+  };
 }
 
-console.log("Завдання: 7 ==============================");
+console.log("Task: 7 ==============================");
 
 console.log(
   transformDictionary(
     new Map([
-      ["car", "автомобіль"],
-      ["bus", "автобус"],
-      ["bicycle", "велосипед"],
+      ["car", "auto"],
+      ["bus", "autobus"],
+      ["bicycle", "rower"],
     ])
   )
 );
-// Виведе: {
+// Output: {
 //    keys: [ 'car', 'bus', 'bicycle' ],
-//    values: [ 'автомобіль', 'автобус', 'велосипед' ],
+//    values: [ 'auto', 'autobus', 'rower' ],
 //    entries: [
-//     [ 'car', 'автомобіль' ],
-//     [ 'bus', 'автобус' ],
-//     [ 'bicycle', 'велосипед' ]
+//     [ 'car', 'auto' ],
+//     [ 'bus', 'autobus' ],
+//     [ 'bicycle', 'rower' ]
 //   ]
 // }
 
-// Завдання: 8
+// Task: 8
 /**
- * Функція `checkPresence` перевіряє наявність заданих ключів у словнику.
- * dictionary - Словник, в якому перевіряємо ключі.
- * keys - Масив ключів, які перевіряємо.
- * Повертаємо - Масив булевих значень: true, якщо ключ присутній у словнику, та false, якщо ключ відсутній.
+ * The `checkPresence` function checks the presence of specified keys in the dictionary.
+ * dictionary - The dictionary in which to check the keys.
+ * keys - The array of keys to be checked.
+ * Returns - An array of boolean values: true if the key is present in the dictionary, and false if the key is absent.
  */
 function checkPresence(dictionary, keys) {
-  // Створюємо порожній масив для збереження результатів перевірки
-  // Використовуємо цикл forEach для перебору масиву ключів
-  // Додаємо результат перевірки (true або false) до масиву presence при наявності ключа у словнику
-  // Повертаємо масив
+  let presence = [];
+  keys.forEach((key) => {
+    presence.push(dictionary.has(key));
+  });
+  return presence;
 }
 
-console.log("Завдання: 8 ==============================");
+console.log("Task: 8 ==============================");
 
 console.log(
   checkPresence(
     new Map([
-      ["car", "автомобіль"],
-      ["chair", "стілець"],
-      ["computer", "комп'ютер"],
+      ["car", "auto"],
+      ["chair", "krzesło"],
+      ["computer", "komputer"],
     ]),
     ["car", "book", "chair"]
   )
 );
-// Виведе: [true, false, true]
+// Output: [true, false, true]
 
-// Завдання: 9
+// Task: 9
 /**
- * Функція `getFilteredDictionarySize` повертає кількість елементів в словнику, значення яких відповідають заданому фільтру.
- * dictionary - Словник, розмір якого потрібно отримати.
- * filter - Фільтрувальна функція. Ця функція приймає пару ключ-значення та повертає true, якщо пара відповідає фільтру, або false в іншому випадку.
- * Повертаємо - Розмір фільтрованого словника.
+ * The `getFilteredDictionarySize` function returns the number of elements in the dictionary whose values match the given filter.
+ * dictionary - The dictionary whose size needs to be obtained.
+ * filter - The filtering function. This function takes a key-value pair and returns true if the pair matches the filter, or false otherwise.
+ * Returns - The size of the filtered dictionary.
  */
 function getFilteredDictionarySize(dictionary, filter) {
-  // Створюємо новий Map об'єкт для зберігання елементів, що відповідають фільтру
-  // Використовуємо for...of цикл разом з методом entries() для перебору пар [ключ, значення] словника
-  // Якщо пара [ключ, значення] відповідає фільтру, додаємо її до фільтрованого словника
-  // Повертаємо розмір фільтрованого словника, використовуючи властивість size
+  let filteredDictionary = new Map();
+  for (let [key, value] of dictionary.entries()) {
+    if (filter(key, value)) {
+      filteredDictionary.set(key, value);
+    }
+  }
+  return filteredDictionary.size;
 }
 
-console.log("Завдання: 9 ==============================");
+console.log("Task: 9 ==============================");
 
 console.log(
   getFilteredDictionarySize(
@@ -282,21 +312,21 @@ console.log(
     (key, value) => value > 1000000
   )
 );
-// Виведе: 2, оскільки лише два міста мають населення більше ніж 1 мільйон
+// Output: 2, since only two cities have a population greater than 1 million
 
-// Завдання: 10
+// Task: 10
 /**
- * Функція `sortByValues` сортує словник за значеннями від найбільшого до найменшого.
- * dictionary - Словник, який потрібно відсортувати.
- * Повертаємо - Відсортований словник.
+ * The `sortByValues` function sorts the dictionary by values from highest to lowest.
+ * dictionary - The dictionary that needs to be sorted.
+ * Returns - The sorted dictionary.
  */
 function sortByValues(dictionary) {
-  // Конвертуємо словник в масив пар ключ-значення за допомогою оператора деструктурізації
-  // Сортуємо масив пар ключ-значення за значеннями в порядку спадання
-  // Конвертуємо відсортований масив пар ключ-значення назад у словник
+  let entries = [...dictionary.entries()];
+  entries.sort((a, b) => b[1] - a[1]);
+  return new Map(entries);
 }
 
-console.log("Завдання: 10 ==============================");
+console.log("Task: 10 ==============================");
 
 console.log(
   sortByValues(
@@ -309,28 +339,30 @@ console.log(
     ])
   )
 );
-// Виведе: Map {
+// Output: Map {
 // 'The Little Prince' => 200000000,
 // 'Harry Potter and the Philosopher's Stone' => 120000000,
 // 'The Hobbit' => 100000000,
 // 'And Then There Were None' => 100000000,
 // 'Dream of the Red Chamber' => 100000000 }
 
-// Завдання: 11
+// Task: 11
 /**
- * Функція `resetDictionary` перевіряє кількість елементів у словнику, та якщо вона більша ніж задана, очищує словник.
- * dictionary - Словник, який потрібно перевірити та можливо очистити.
- * maxSize - Максимально допустима кількість елементів у словнику.
- * Повертаємо - true, якщо словник був очищений, або false в іншому випадку.
+ * The `resetDictionary` function checks the number of elements in the dictionary, and if it exceeds the specified limit, clears the dictionary.
+ * dictionary - The dictionary to be checked and possibly cleared.
+ * maxSize - The maximum allowable number of elements in the dictionary.
+ * Returns - true if the dictionary was cleared, or false otherwise.
  */
 function resetDictionary(dictionary, maxSize) {
-  // Використовуємо метод size для перевірки кількості елементів у словнику
-  // Якщо кількість елементів більша ніж максимально допустима, очищуємо словник за допомогою методу clear
-  // Повертаємо true, оскільки словник був очищений
-  // Повертаємо false, оскільки кількість елементів не перевищує максимально допустиму, тому словник не був очищений
+  if (dictionary.size > maxSize) {
+    dictionary.clear();
+    return true;
+  } else {
+    return false;
+  }
 }
 
-console.log("Завдання: 11 ==============================");
+console.log("Task: 11 ==============================");
 
 console.log(
   resetDictionary(
@@ -344,27 +376,32 @@ console.log(
     3
   )
 );
-// Виведе: true, оскільки у словнику було 5 елементів, що більше ніж maxSize = 3
+// Output: true, since the dictionary had 5 elements, which is more than maxSize = 3
 
-// Завдання: 12
+// Task: 12
 /**
- * Функція `convertDictionaryToSet` отримує словник та перетворює його в множину.
- * Значенням множини є ключі словника, де рядкові ключі переводяться в верхній регістр,
- * а числові ключі збільшуються на 1.
+ * The `convertDictionaryToSet` function takes a dictionary and converts it into a set.
+ * The set values are the keys of the dictionary, where string keys are converted to uppercase,
+ * and numeric keys are increased by 1.
  *
- * dictionary - Словник, який потрібно перетворити.
+ * dictionary - The dictionary to be converted.
  *
- * Повертає - Множину, яка містить ключі словника в модифікованому вигляді.
+ * Returns - A set containing the dictionary keys in modified form.
  */
 function convertDictionaryToSet(dictionary) {
-  // Перебираємо ключі словника
-  // Якщо ключ є рядком, переводимо його в верхній регістр і додаємо до множини
-  // Якщо ключ є числом, збільшуємо його на 1 і додаємо до множини
-  // Повертаємо отриману множину
+  let newSet = new Set();
+  for (let key of dictionary.keys()) {
+    if (typeof key === "string") {
+      newSet.add(key.toUpperCase());
+    } else if (typeof key === "number") {
+      newSet.add(key + 1);
+    }
+  }
+  return newSet;
 }
 
-// Приклад використання функції convertDictionaryToSet
-console.log("Завдання: 12 ==============================");
+// Example of using the convertDictionaryToSet function
+console.log("Task: 12 ==============================");
 
 let mixedDictionary = new Map([
   ["apple", "red"],
@@ -374,27 +411,29 @@ let mixedDictionary = new Map([
 ]);
 
 console.log(convertDictionaryToSet(mixedDictionary));
-// Виведе: Set { 'APPLE', 'BANANA', 2, 3 }
+// Output: Set { 'APPLE', 'BANANA', 2, 3 }
 
-// Завдання: 13
+// Task: 13
 /**
- * Функція `convertSetToDictionary` отримує множину та перетворює її в словник.
- * Ключами словника стають елементи множини, а значеннями - коди перших символів цих елементів.
+ * The `convertSetToDictionary` function takes a set and converts it into a dictionary.
+ * The set elements become the dictionary keys, and the values are the character codes of the first characters of these elements.
  *
- * set - Множина, яку потрібно перетворити.
+ * set - The set to be converted.
  *
- * Повертає - Словник, який містить елементи множини як ключі та їх коди перших символів як значення.
+ * Returns - A dictionary that contains the set elements as keys and their character codes as values.
  */
 function convertSetToDictionary(set) {
-  // Перебираємо елементи множини
-  // Додаємо елемент в словник з ключем, який дорівнює елементу, та значенням, яке дорівнює коду його першого символу
-  // Повертаємо отриманий словник
+  let newDictionary = new Map();
+  for (let item of set) {
+    newDictionary.set(item, item.charCodeAt(0));
+  }
+  return newDictionary;
 }
 
-// Приклад використання функції convertSetToDictionary
-console.log("Завдання: 13 ==============================");
+// Example of using the convertSetToDictionary function
+console.log("Task: 13 ==============================");
 
 let someSet = new Set(["apple", "banana", "1", "2"]);
 
 console.log(convertSetToDictionary(someSet));
-// Виведе: Map { 'apple' => 97, 'banana' => 98, '1' => 49, '2' => 50 }
+// Output: Map { 'apple' => 97, 'banana' => 98, '1' => 49, '2' => 50 }
